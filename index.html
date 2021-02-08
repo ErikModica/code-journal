@@ -18,7 +18,45 @@
   <header>
   </header>
   <main>
-    <div data-view="entry-form"></div>
+    <div data-view="entry-form">
+      <div class="container">
+        <div class="row-title-head">
+          <div class="column-full">
+            <h2>New Entry</h2>
+          </div>
+        </div>
+        <form action="index.html">
+          <div class="row-form-body">
+            <div class="column-half">
+              <img src="#">
+            </div>
+            <div class="column-half">
+              <label for="image-url">Image URL</label>
+              <div>
+                <input type="image-url" name="image">
+              </div>
+              <label for="title">Title</label>
+              <div>
+                <input type="title" name="title">
+              </div>
+            </div>
+          </div>
+          <div class="row-notes">
+            <div class="column-full">
+              <label for="notes">Notes</label>
+              <div>
+                <textarea name="notes"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row-submit">
+            <div class="column-full">
+              <button class="submit-button">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
