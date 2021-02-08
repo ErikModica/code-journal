@@ -27,3 +27,11 @@ $entryForm.addEventListener('submit', function (event) {
   $entryForm.elements.title.value = null;
   $entryForm.elements.notes.value = null;
 });
+
+window.addEventListener('beforeunload', function (event) {
+
+  var entryDataJSON = JSON.stringify(data);
+
+  localStorage.setItem('entryData', entryDataJSON);
+
+});
