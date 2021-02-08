@@ -1,0 +1,43 @@
+* {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+header {
+  background-color: rgb(75, 75, 75);
+  color: white;
+  height: 60px;
+}
+
+h1 {
+  letter-spacing: 0.05rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+textarea {
+  height: 8rem;
+}
+
+.container {
+  background-color: rgb(255, 240, 240);
+  padding: 1rem;
+}
+
+.entry-image {
+  border-radius: 2rem;
+  width: 98%;
+}
+
+.column-full {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.input-div {
+  padding: 1rem 0.1rem;
+}

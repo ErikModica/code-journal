@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -20,40 +22,46 @@
   <main>
     <div data-view="entry-form">
       <div class="container">
-        <div class="row-title-head">
+
+        <div class="row row-header">
           <div class="column-full">
-            <h2>New Entry</h2>
+            <h1 class="new-entry">New Entry</h1>
           </div>
         </div>
+
         <form action="index.html">
-          <div class="row-form-body">
+
+          <div class="row">
             <div class="column-half">
-              <img src="#">
+              <img class="entry-image" src="https://ichef.bbci.co.uk/news/400/cpsprodpb/2231/production/_87535780_monkey2.jpg">
             </div>
             <div class="column-half">
               <label for="image-url">Image URL</label>
-              <div>
+              <div class="input-div">
                 <input type="image-url" name="image">
               </div>
               <label for="title">Title</label>
-              <div>
+              <div class="input-div">
                 <input type="title" name="title">
               </div>
             </div>
           </div>
-          <div class="row-notes">
-            <div class="column-full">
-              <label for="notes">Notes</label>
-              <div>
+
+          <div class="row">
+            <div class="column-full notes-column">
+              <label class="notes-label" for="notes">Notes</label>
+              <div class="input-div">
                 <textarea name="notes"></textarea>
               </div>
             </div>
           </div>
-          <div class="row-submit">
+
+          <div class="row">
             <div class="column-full">
-              <button class="submit-button">Submit</button>
+              <button class="submit-button">Save</button>
             </div>
           </div>
+
         </form>
       </div>
     </div>
