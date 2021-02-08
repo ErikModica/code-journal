@@ -4,7 +4,6 @@
 
 header {
   background-color: rgb(75, 75, 75);
-  color: white;
   height: 60px;
 }
 
@@ -31,11 +30,7 @@ textarea {
 .entry-image {
   border-radius: 2rem;
   width: 98%;
-}
-
-.column-full {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .input-div {
