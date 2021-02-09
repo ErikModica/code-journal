@@ -3,12 +3,17 @@
 }
 
 header {
-  background-color: rgb(75, 75, 75);
-  height: 60px;
+  background-color: rgb(190, 124, 0);
+  height: 50px;
 }
 
 h1 {
   letter-spacing: 0.05rem;
+}
+
+header > h1 {
+  margin: 0;
+  padding-left: 1rem;
 }
 
 input,
@@ -23,7 +28,7 @@ textarea {
 }
 
 .container {
-  background-color: rgb(255, 240, 240);
+  background-color: rgb(235, 235, 235);
   padding: 1rem;
 }
 
