@@ -31,6 +31,7 @@ $entryForm.addEventListener('submit', function (event) {
   $entryForm.elements.notes.value = null;
 
   $entryFormEntireDiv.className = 'entry-form-entire-div inactive';
+  $entriesEntireDiv.className = 'entries-entire-div active';
 });
 
 var $entry = document.querySelector('.entry-list');
@@ -68,15 +69,25 @@ function renderEntry(object) {
   return $container;
 }
 
-window.addEventListener('DOMContentLoaded', function loadEntry(event) {
+window.addEventListener('DOMContentLoaded', function (event) {
   for (var i = 0; i < data.entries.length; i++) {
     $entry.prepend(renderEntry(data.entries[i]));
   }
 });
 
 var $entryFormEntireDiv = document.querySelector('.entry-form-entire-div');
-var $newEntryButton = document.querySelector('.new-entry-button');
+var $newEntryAnchor = document.querySelector('.new-entry-anchor');
+var $entriesNavAnchor = document.querySelector('.entries-nav-anchor');
+var $entriesEntireDiv = document.querySelector('.entries-entire-div');
 
-$newEntryButton.addEventListener('click', function (event) {
+$newEntryAnchor.addEventListener('click', function (event) {
   $entryFormEntireDiv.className = 'entry-form-entire-div active';
+
+  $entriesEntireDiv.className = 'entries-entire-div inactive';
+});
+
+$entriesNavAnchor.addEventListener('click', function (event) {
+  $entryFormEntireDiv.className = 'entry-form-entire-div inactive';
+
+  $entriesEntireDiv.className = 'entries-entire-div active';
 });
