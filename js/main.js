@@ -4,7 +4,6 @@
 var $imgURL = document.querySelector('.img-url-input');
 var $image = document.querySelector('.entry-image');
 var $entryForm = document.querySelector('.entry-form');
-var entryFormInfo = {};
 
 $imgURL.addEventListener('input', function (event) {
   $image.setAttribute('src', event.target.value);
@@ -13,13 +12,15 @@ $imgURL.addEventListener('input', function (event) {
 $entryForm.addEventListener('submit', function (event) {
   event.preventDefault();
 
+  var entryFormInfo = {};
+
   entryFormInfo[$entryForm.elements.title.name] = $entryForm.elements.title.value;
   entryFormInfo[$entryForm.elements.imageUrl.name] = $entryForm.elements.imageUrl.value;
   entryFormInfo[$entryForm.elements.notes.name] = $entryForm.elements.notes.value;
   entryFormInfo.nextEntryId = data.nextEntryId;
   data.nextEntryId += 1;
 
-  data.entries.unshift(entryFormInfo);
+  data.entries.push(entryFormInfo);
 
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
 
@@ -28,18 +29,17 @@ $entryForm.addEventListener('submit', function (event) {
   $entryForm.elements.notes.value = null;
 });
 
-window.addEventListener('beforeunload', function (event) {
+// window.addEventListener('beforeunload', function (event) {
 
-  var entryDataJSON = JSON.stringify(data);
+//   var entryDataJSON = JSON.stringify(data);
 
-  localStorage.setItem('entryData', entryDataJSON);
+//   localStorage.setItem('entryData', entryDataJSON);
 
-});
+// });
 
 var $entry = document.querySelector('ul');
 
 function renderEntry(object) {
-  var i = 0;
 
   var $container = document.createElement('div');
   $container.setAttribute('class', 'container');
@@ -66,7 +66,7 @@ function renderEntry(object) {
 
   var $entryImg = document.createElement('img');
   $entryImg.setAttribute('class', 'entry-image');
-  $entryImg.setAttribute('src', data.entries[i].imageUrl);
+  $entryImg.setAttribute('src', object.imageUrl);
   $columnHalfImg.appendChild($entryImg);
 
   var $columnHalfText = document.createElement('div');
@@ -74,15 +74,18 @@ function renderEntry(object) {
   $bodyRow.appendChild($columnHalfText);
 
   var $titleH2 = document.createElement('h2');
-  $titleH2.textContent = data.entries[i].title;
+  $titleH2.textContent = object.title;
   $columnHalfText.appendChild($titleH2);
 
   var $notesPar = document.createElement('p');
-  $notesPar.textContent = data.entries[i].notes;
+  $notesPar.textContent = object.notes;
   $columnHalfText.appendChild($notesPar);
 
-  $entry.prepend($container);
-
+  return $container;
 }
 
-renderEntry(data);
+window.addEventListener('DOMContentLoaded', function (event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    $entry.prepend(renderEntry(data.entries[i]));
+  }
+});
