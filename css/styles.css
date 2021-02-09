@@ -2,18 +2,29 @@
   font-family: 'Noto Sans JP', sans-serif;
 }
 
-header {
+.navbar {
   background-color: rgb(190, 124, 0);
-  height: 50px;
+  height: 65px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  list-style: none;
+}
+
+.nav-link {
+  padding-right: 4rem;
+  font-size: 18px;
+}
+
+.main-logo {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.05rem;
 }
 
 h1 {
   letter-spacing: 0.05rem;
-}
-
-header > h1 {
-  margin: 0;
-  padding-left: 1rem;
 }
 
 input,
@@ -42,6 +53,6 @@ textarea {
   padding: 1rem 0.1rem;
 }
 
-ul {
+.entry-list {
   padding-left: 0;
 }

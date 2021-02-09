@@ -37,7 +37,7 @@ $entryForm.addEventListener('submit', function (event) {
 
 // });
 
-var $entry = document.querySelector('ul');
+var $entry = document.querySelector('.entry-list');
 
 function renderEntry(object) {
 
