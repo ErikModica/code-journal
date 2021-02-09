@@ -35,3 +35,54 @@ window.addEventListener('beforeunload', function (event) {
   localStorage.setItem('entryData', entryDataJSON);
 
 });
+
+var $entry = document.querySelector('ul');
+
+function renderEntry(object) {
+  var i = 0;
+
+  var $container = document.createElement('div');
+  $container.setAttribute('class', 'container');
+
+  // var $titleRow = document.createElement('div');
+  // $titleRow.setAttribute('class', 'row');
+  // $container.appendChild($titleRow)
+
+  // var $columnFull = document.createElement('div');
+  // $columnFull.setAttribute('class', 'column-full');
+  // $titleRow.appendChild($columnFull)
+
+  // var $titleH1 = document.createElement('h1');
+  // $titleH1.textContent = data.entries[i].title;
+  // $columnFull.appendChild($titleH1);
+
+  var $bodyRow = document.createElement('div');
+  $bodyRow.setAttribute('class', 'row');
+  $container.appendChild($bodyRow);
+
+  var $columnHalfImg = document.createElement('div');
+  $columnHalfImg.setAttribute('class', 'column-half');
+  $bodyRow.appendChild($columnHalfImg);
+
+  var $entryImg = document.createElement('img');
+  $entryImg.setAttribute('class', 'entry-image');
+  $entryImg.setAttribute('src', data.entries[i].imageUrl);
+  $columnHalfImg.appendChild($entryImg);
+
+  var $columnHalfText = document.createElement('div');
+  $columnHalfText.setAttribute('class', 'column-half');
+  $bodyRow.appendChild($columnHalfText);
+
+  var $titleH2 = document.createElement('h2');
+  $titleH2.textContent = data.entries[i].title;
+  $columnHalfText.appendChild($titleH2);
+
+  var $notesPar = document.createElement('p');
+  $notesPar.textContent = data.entries[i].notes;
+  $columnHalfText.appendChild($notesPar);
+
+  $entry.prepend($container);
+
+}
+
+renderEntry(data);
