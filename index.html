@@ -13,11 +13,58 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
   </header>
   <main>
+    <div data-view="entry-form">
+      <div class="container">
+
+        <div class="row row-header">
+          <div class="column-full">
+            <h1 class="new-entry">New Entry</h1>
+          </div>
+        </div>
+
+        <form class="entry-form" action="index.html">
+
+          <div class="row">
+            <div class="column-half">
+              <img class="entry-image" src="images/placeholder-image-square.jpg">
+            </div>
+            <div class="column-half">
+              <label for="title">Title</label>
+              <div class="input-div">
+                <input type="title" name="title" required>
+              </div>
+              <label for="image-url">Image URL</label>
+              <div class="input-div">
+                <input class="img-url-input" type="image-url" name="imageUrl" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="column-full notes-column">
+              <label class="notes-label" for="notes">Notes</label>
+              <div class="input-div">
+                <textarea name="notes" required></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="column-full">
+              <button class="submit-button">Save</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
