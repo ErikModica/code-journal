@@ -24,18 +24,14 @@ $entryForm.addEventListener('submit', function (event) {
 
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
 
+  $entry.prepend(renderEntry(entryFormInfo));
+
   $entryForm.elements.title.value = null;
   $entryForm.elements.imageUrl.value = null;
   $entryForm.elements.notes.value = null;
+
+  $entryFormEntireDiv.className = 'entry-form-entire-div inactive';
 });
-
-// window.addEventListener('beforeunload', function (event) {
-
-//   var entryDataJSON = JSON.stringify(data);
-
-//   localStorage.setItem('entryData', entryDataJSON);
-
-// });
 
 var $entry = document.querySelector('.entry-list');
 
@@ -43,18 +39,6 @@ function renderEntry(object) {
 
   var $container = document.createElement('div');
   $container.setAttribute('class', 'container');
-
-  // var $titleRow = document.createElement('div');
-  // $titleRow.setAttribute('class', 'row');
-  // $container.appendChild($titleRow)
-
-  // var $columnFull = document.createElement('div');
-  // $columnFull.setAttribute('class', 'column-full');
-  // $titleRow.appendChild($columnFull)
-
-  // var $titleH1 = document.createElement('h1');
-  // $titleH1.textContent = data.entries[i].title;
-  // $columnFull.appendChild($titleH1);
 
   var $bodyRow = document.createElement('div');
   $bodyRow.setAttribute('class', 'row');
@@ -84,8 +68,15 @@ function renderEntry(object) {
   return $container;
 }
 
-window.addEventListener('DOMContentLoaded', function (event) {
+window.addEventListener('DOMContentLoaded', function loadEntry(event) {
   for (var i = 0; i < data.entries.length; i++) {
     $entry.prepend(renderEntry(data.entries[i]));
   }
+});
+
+var $entryFormEntireDiv = document.querySelector('.entry-form-entire-div');
+var $newEntryButton = document.querySelector('.new-entry-button');
+
+$newEntryButton.addEventListener('click', function (event) {
+  $entryFormEntireDiv.className = 'entry-form-entire-div active';
 });
