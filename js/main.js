@@ -103,6 +103,7 @@ $entry.addEventListener('click', function (event) {
 
   if (event.target.tagName === 'I') {
     // var $closestEntry = event.target.closest('.container');
-    // console.log($closestEntry);
+    $entryFormEntireDiv.className = 'entry-form-entire-div';
+    $entriesEntireDiv.className = '.entries-entire-div hidden';
   }
 });
