@@ -18,28 +18,26 @@ $entryForm.addEventListener('submit', function (event) {
   entryFormInfo.imageUrl = $entryForm.elements.imageUrl.value;
   entryFormInfo.notes = $entryForm.elements.notes.value;
   entryFormInfo.nextEntryId = data.nextEntryId;
+
+  // if (data.editing === data.entries[data.entries.length - data.editing].nextEntryId) {
+
+  //   data.entries[data.entries.length - data.editing].title = $entryForm.elements.title.value;
+  //   data.entries[data.entries.length - data.editing].imageUrl = $entryForm.elements.imageUrl.value;
+  //   data.entries[data.entries.length - data.editing].notes = $entryForm.elements.notes.value;
+
+  //   console.log(renderEntry(data.entries[data.entries.length - data.editing]))
+  //   console.log(data.editing)
+
+  //   data.editing = null;
+  // } else {
+
+  data.entries.unshift(entryFormInfo);
+
+  $image.setAttribute('src', 'images/placeholder-image-square.jpg');
+
+  $entry.prepend(renderEntry(entryFormInfo));
   data.nextEntryId += 1;
-
-  if (data.editing === data.entries[data.entries.length - data.editing].nextEntryId) {
-
-    data.entries[data.entries.length - data.editing].title = $entryForm.elements.title.value;
-    data.entries[data.entries.length - data.editing].imageUrl = $entryForm.elements.imageUrl.value;
-    data.entries[data.entries.length - data.editing].notes = $entryForm.elements.notes.value;
-
-    renderEntry(data.entries[data.entries.length - data.editing]);
-
-    // console.log(data);
-    // console.log('it worked')
-
-    data.editing = null;
-  } else {
-
-    data.entries.unshift(entryFormInfo);
-
-    $image.setAttribute('src', 'images/placeholder-image-square.jpg');
-
-    $entry.prepend(renderEntry(entryFormInfo));
-  }
+  // }
 
   $entryForm.reset();
 
@@ -118,12 +116,14 @@ $entry.addEventListener('click', function (event) {
     $entryFormEntireDiv.className = 'entry-form-entire-div';
     $entriesEntireDiv.className = '.entries-entire-div hidden';
 
-    data.editing = $closestEntry.getAttribute('data-entry-id');
-    data.editing = parseInt(data.editing);
+    var closestEntryIDNum = parseInt($closestEntry.getAttribute('data-entry-id'));
+    var closestEntryEntriesIndex = data.entries.length - closestEntryIDNum;
 
-    $entryForm.elements.title.value = data.entries[data.entries.length - data.editing].title;
-    $entryForm.elements.imageUrl.value = data.entries[data.entries.length - data.editing].imageUrl;
-    $entryForm.elements.notes.value = data.entries[data.entries.length - data.editing].notes;
+    data.editing = data.entries[closestEntryEntriesIndex];
+
+    // $entryForm.elements.title.value = data.entries[data.entries.length - data.editing].title;
+    // $entryForm.elements.imageUrl.value = data.entries[data.entries.length - data.editing].imageUrl;
+    // $entryForm.elements.notes.value = data.entries[data.entries.length - data.editing].notes;
 
   }
 });
