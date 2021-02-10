@@ -64,6 +64,10 @@ function renderEntry(object) {
   $titleH2.textContent = object.title;
   $columnHalfText.appendChild($titleH2);
 
+  var $editEntryButton = document.createElement('i');
+  $editEntryButton.setAttribute('class', 'fas fa-edit');
+  $titleH2.appendChild($editEntryButton);
+
   var $notesPar = document.createElement('p');
   $notesPar.textContent = object.notes;
   $columnHalfText.appendChild($notesPar);
