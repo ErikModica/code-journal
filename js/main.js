@@ -121,9 +121,9 @@ $entry.addEventListener('click', function (event) {
 
     data.editing = data.entries[closestEntryEntriesIndex];
 
-    // $entryForm.elements.title.value = data.entries[data.entries.length - data.editing].title;
-    // $entryForm.elements.imageUrl.value = data.entries[data.entries.length - data.editing].imageUrl;
-    // $entryForm.elements.notes.value = data.entries[data.entries.length - data.editing].notes;
+    $entryForm.elements.title.value = data.editing.title;
+    $entryForm.elements.imageUrl.value = data.editing.imageUrl;
+    $entryForm.elements.notes.value = data.editing.notes;
 
   }
 });
