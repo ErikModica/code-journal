@@ -4,7 +4,6 @@
 var $imgURL = document.querySelector('.img-url-input');
 var $image = document.querySelector('.entry-image');
 var $entryForm = document.querySelector('.entry-form');
-var entryFormInfo = {};
 
 $imgURL.addEventListener('input', function (event) {
   $image.setAttribute('src', event.target.value);
@@ -13,9 +12,11 @@ $imgURL.addEventListener('input', function (event) {
 $entryForm.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  entryFormInfo[$entryForm.elements.title.name] = $entryForm.elements.title.value;
-  entryFormInfo[$entryForm.elements.imageUrl.name] = $entryForm.elements.imageUrl.value;
-  entryFormInfo[$entryForm.elements.notes.name] = $entryForm.elements.notes.value;
+  var entryFormInfo = {};
+
+  entryFormInfo.title = $entryForm.elements.title.value;
+  entryFormInfo.imageUrl = $entryForm.elements.imageUrl.value;
+  entryFormInfo.notes = $entryForm.elements.notes.value;
   entryFormInfo.nextEntryId = data.nextEntryId;
   data.nextEntryId += 1;
 
@@ -23,15 +24,72 @@ $entryForm.addEventListener('submit', function (event) {
 
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
 
-  $entryForm.elements.title.value = null;
-  $entryForm.elements.imageUrl.value = null;
-  $entryForm.elements.notes.value = null;
+  $entry.prepend(renderEntry(entryFormInfo));
+
+  // $entryForm.elements.title.value = null;
+  // $entryForm.elements.imageUrl.value = null;
+  // $entryForm.elements.notes.value = null;
+
+  $entryForm.reset();
+
+  $entryFormEntireDiv.className = 'entry-form-entire-div hidden';
+  $entriesEntireDiv.className = 'entries-entire-div';
 });
 
-window.addEventListener('beforeunload', function (event) {
+var $entry = document.querySelector('.entry-list');
 
-  var entryDataJSON = JSON.stringify(data);
+function renderEntry(object) {
 
-  localStorage.setItem('entryData', entryDataJSON);
+  var $container = document.createElement('div');
+  $container.setAttribute('class', 'container');
 
+  var $bodyRow = document.createElement('div');
+  $bodyRow.setAttribute('class', 'row');
+  $container.appendChild($bodyRow);
+
+  var $columnHalfImg = document.createElement('div');
+  $columnHalfImg.setAttribute('class', 'column-half');
+  $bodyRow.appendChild($columnHalfImg);
+
+  var $entryImg = document.createElement('img');
+  $entryImg.setAttribute('class', 'entry-image');
+  $entryImg.setAttribute('src', object.imageUrl);
+  $columnHalfImg.appendChild($entryImg);
+
+  var $columnHalfText = document.createElement('div');
+  $columnHalfText.setAttribute('class', 'column-half');
+  $bodyRow.appendChild($columnHalfText);
+
+  var $titleH2 = document.createElement('h2');
+  $titleH2.textContent = object.title;
+  $columnHalfText.appendChild($titleH2);
+
+  var $notesPar = document.createElement('p');
+  $notesPar.textContent = object.notes;
+  $columnHalfText.appendChild($notesPar);
+
+  return $container;
+}
+
+window.addEventListener('DOMContentLoaded', function (event) {
+  for (var i = data.entries.length - 1; i > 0; i--) {
+    $entry.appendChild(renderEntry(data.entries[i]));
+  }
+});
+
+var $entryFormEntireDiv = document.querySelector('.entry-form-entire-div');
+var $newEntryAnchor = document.querySelector('.new-entry-anchor');
+var $entriesNavAnchor = document.querySelector('.entries-nav-anchor');
+var $entriesEntireDiv = document.querySelector('.entries-entire-div');
+
+$newEntryAnchor.addEventListener('click', function (event) {
+  $entryFormEntireDiv.className = 'entry-form-entire-div';
+
+  $entriesEntireDiv.className = 'entries-entire-div hidden';
+});
+
+$entriesNavAnchor.addEventListener('click', function (event) {
+  $entryFormEntireDiv.className = 'entry-form-entire-div hidden';
+
+  $entriesEntireDiv.className = 'entries-entire-div';
 });

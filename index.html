@@ -18,9 +18,13 @@
 </head>
 <body>
   <header>
+    <ul class="navbar">
+      <li class="nav-link"><a class="main-logo">Code Journal</a></li>
+      <li class="nav-link"><a class="entries-nav-anchor">Entries</a></li>
+    </ul>
   </header>
   <main>
-    <div data-view="entry-form">
+    <div class="entry-form-entire-div hidden" data-view="entry-form">
       <div class="container">
 
         <div class="row row-header">
@@ -58,12 +62,29 @@
 
           <div class="row">
             <div class="column-full">
-              <button class="submit-button">Save</button>
+              <button class="submit-button button">SAVE</button>
             </div>
           </div>
 
         </form>
       </div>
+    </div>
+
+    <div class="entries-entire-div" data-view="entries">
+      <div class="container">
+        <div class="row">
+          <div class="column-full entry-bar">
+            <h1>Entries</h1>
+            <a class="new-entry-anchor button">NEW</a>
+          </div>
+        </div>
+      </div>
+
+
+
+      <ul class="entry-list">
+      </ul>
+
     </div>
   </main>
   <script src="js/data.js"></script>
