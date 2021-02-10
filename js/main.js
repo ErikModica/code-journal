@@ -20,15 +20,26 @@ $entryForm.addEventListener('submit', function (event) {
   entryFormInfo.nextEntryId = data.nextEntryId;
   data.nextEntryId += 1;
 
-  data.entries.unshift(entryFormInfo);
+  if (data.editing === data.entries[data.entries.length - data.editing].nextEntryId) {
 
-  $image.setAttribute('src', 'images/placeholder-image-square.jpg');
+    data.entries[data.entries.length - data.editing].title = $entryForm.elements.title.value;
+    data.entries[data.entries.length - data.editing].imageUrl = $entryForm.elements.imageUrl.value;
+    data.entries[data.entries.length - data.editing].notes = $entryForm.elements.notes.value;
 
-  $entry.prepend(renderEntry(entryFormInfo));
+    renderEntry(data.entries[data.entries.length - data.editing]);
 
-  // $entryForm.elements.title.value = null;
-  // $entryForm.elements.imageUrl.value = null;
-  // $entryForm.elements.notes.value = null;
+    // console.log(data);
+    // console.log('it worked')
+
+    data.editing = null;
+  } else {
+
+    data.entries.unshift(entryFormInfo);
+
+    $image.setAttribute('src', 'images/placeholder-image-square.jpg');
+
+    $entry.prepend(renderEntry(entryFormInfo));
+  }
 
   $entryForm.reset();
 
@@ -42,7 +53,7 @@ function renderEntry(object) {
 
   var $container = document.createElement('div');
   $container.setAttribute('class', 'container');
-  $container.setAttribute('data-entry-id', object.nextEntryId - 1);
+  $container.setAttribute('data-entry-id', object.nextEntryId);
 
   var $bodyRow = document.createElement('div');
   $bodyRow.setAttribute('class', 'row');
@@ -77,7 +88,7 @@ function renderEntry(object) {
 }
 
 window.addEventListener('DOMContentLoaded', function (event) {
-  for (var i = data.entries.length - 1; i > 0; i--) {
+  for (var i = 0; i < data.entries.length; i++) {
     $entry.appendChild(renderEntry(data.entries[i]));
   }
 });
@@ -108,10 +119,11 @@ $entry.addEventListener('click', function (event) {
     $entriesEntireDiv.className = '.entries-entire-div hidden';
 
     data.editing = $closestEntry.getAttribute('data-entry-id');
+    data.editing = parseInt(data.editing);
 
-    $entryForm.elements.title.value = data.entries[data.editing].title;
-    $entryForm.elements.imageUrl.value = data.entries[data.editing].imageUrl;
-    $entryForm.elements.notes.value = data.entries[data.editing].notes;
+    $entryForm.elements.title.value = data.entries[data.entries.length - data.editing].title;
+    $entryForm.elements.imageUrl.value = data.entries[data.entries.length - data.editing].imageUrl;
+    $entryForm.elements.notes.value = data.entries[data.entries.length - data.editing].notes;
 
   }
 });
