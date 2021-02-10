@@ -14,24 +14,26 @@ $entryForm.addEventListener('submit', function (event) {
 
   var entryFormInfo = {};
 
-  entryFormInfo[$entryForm.elements.title.name] = $entryForm.elements.title.value;
-  entryFormInfo[$entryForm.elements.imageUrl.name] = $entryForm.elements.imageUrl.value;
-  entryFormInfo[$entryForm.elements.notes.name] = $entryForm.elements.notes.value;
+  entryFormInfo.title = $entryForm.elements.title.value;
+  entryFormInfo.imageUrl = $entryForm.elements.imageUrl.value;
+  entryFormInfo.notes = $entryForm.elements.notes.value;
   entryFormInfo.nextEntryId = data.nextEntryId;
   data.nextEntryId += 1;
 
-  data.entries.push(entryFormInfo);
+  data.entries.unshift(entryFormInfo);
 
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
 
   $entry.prepend(renderEntry(entryFormInfo));
 
-  $entryForm.elements.title.value = null;
-  $entryForm.elements.imageUrl.value = null;
-  $entryForm.elements.notes.value = null;
+  // $entryForm.elements.title.value = null;
+  // $entryForm.elements.imageUrl.value = null;
+  // $entryForm.elements.notes.value = null;
 
-  $entryFormEntireDiv.className = 'entry-form-entire-div inactive';
-  $entriesEntireDiv.className = 'entries-entire-div active';
+  $entryForm.reset();
+
+  $entryFormEntireDiv.className = 'entry-form-entire-div hidden';
+  $entriesEntireDiv.className = 'entries-entire-div';
 });
 
 var $entry = document.querySelector('.entry-list');
@@ -70,8 +72,8 @@ function renderEntry(object) {
 }
 
 window.addEventListener('DOMContentLoaded', function (event) {
-  for (var i = 0; i < data.entries.length; i++) {
-    $entry.prepend(renderEntry(data.entries[i]));
+  for (var i = data.entries.length - 1; i > 0; i--) {
+    $entry.appendChild(renderEntry(data.entries[i]));
   }
 });
 
@@ -81,13 +83,13 @@ var $entriesNavAnchor = document.querySelector('.entries-nav-anchor');
 var $entriesEntireDiv = document.querySelector('.entries-entire-div');
 
 $newEntryAnchor.addEventListener('click', function (event) {
-  $entryFormEntireDiv.className = 'entry-form-entire-div active';
+  $entryFormEntireDiv.className = 'entry-form-entire-div';
 
-  $entriesEntireDiv.className = 'entries-entire-div inactive';
+  $entriesEntireDiv.className = 'entries-entire-div hidden';
 });
 
 $entriesNavAnchor.addEventListener('click', function (event) {
-  $entryFormEntireDiv.className = 'entry-form-entire-div inactive';
+  $entryFormEntireDiv.className = 'entry-form-entire-div hidden';
 
-  $entriesEntireDiv.className = 'entries-entire-div active';
+  $entriesEntireDiv.className = 'entries-entire-div';
 });
