@@ -98,3 +98,11 @@ $entriesNavAnchor.addEventListener('click', function (event) {
 
   $entriesEntireDiv.className = 'entries-entire-div';
 });
+
+$entry.addEventListener('click', function (event) {
+
+  if (event.target.tagName === 'I') {
+    // var $closestEntry = event.target.closest('.container');
+    // console.log($closestEntry);
+  }
+});
