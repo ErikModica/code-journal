@@ -109,5 +109,9 @@ $entry.addEventListener('click', function (event) {
 
     data.editing = $closestEntry.getAttribute('data-entry-id');
 
+    $entryForm.elements.title.value = data.entries[data.editing].title;
+    $entryForm.elements.imageUrl.value = data.entries[data.editing].imageUrl;
+    $entryForm.elements.notes.value = data.entries[data.editing].notes;
+
   }
 });
