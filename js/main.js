@@ -42,6 +42,7 @@ function renderEntry(object) {
 
   var $container = document.createElement('div');
   $container.setAttribute('class', 'container');
+  $container.setAttribute('data-entry-id', object.nextEntryId - 1);
 
   var $bodyRow = document.createElement('div');
   $bodyRow.setAttribute('class', 'row');
