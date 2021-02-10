@@ -102,8 +102,12 @@ $entriesNavAnchor.addEventListener('click', function (event) {
 $entry.addEventListener('click', function (event) {
 
   if (event.target.tagName === 'I') {
-    // var $closestEntry = event.target.closest('.container');
+    var $closestEntry = event.target.closest('.container');
+
     $entryFormEntireDiv.className = 'entry-form-entire-div';
     $entriesEntireDiv.className = '.entries-entire-div hidden';
+
+    data.editing = $closestEntry.getAttribute('data-entry-id');
+
   }
 });
