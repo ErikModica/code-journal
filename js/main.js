@@ -158,14 +158,15 @@ $entry.addEventListener('click', function (event) {
 
     $image.setAttribute('src', data.editing.imageUrl);
 
-    // var $deleteAnchor = document.createElement('a');
-    // $deleteAnchor.setAttribute('class', 'delete-anchor');
-    // $deleteAnchor.textContent = 'DELETE ENTRY';
-    // $entryForm.appendChild($deleteAnchor);
+    var $deleteAnchor = document.createElement('a');
+    $deleteAnchor.setAttribute('class', 'delete-anchor');
+    $deleteAnchor.textContent = 'DELETE ENTRY';
+    $entryForm.appendChild($deleteAnchor);
 
-    // $deleteAnchor.addEventListener('click', function (event) {
-
-    // })
+    $deleteAnchor.addEventListener('click', function (event) {
+      var $deleteEntryPrompt = document.querySelector('.delete-prompt-container');
+      $deleteEntryPrompt.className = 'delete-prompt-container';
+    });
 
   }
 });
