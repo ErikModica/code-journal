@@ -38,11 +38,11 @@ $entryForm.addEventListener('submit', function (event) {
 
     data.entries.unshift(entryFormInfo);
 
-    $image.setAttribute('src', 'images/placeholder-image-square.jpg');
-
     $entry.prepend(renderEntry(entryFormInfo));
     data.nextEntryId += 1;
   }
+
+  $image.setAttribute('src', 'images/placeholder-image-square.jpg');
 
   $entryForm.reset();
 
@@ -113,6 +113,9 @@ $entriesNavAnchor.addEventListener('click', function (event) {
   $entryFormEntireDiv.className = 'entry-form-entire-div hidden';
 
   $entriesEntireDiv.className = 'entries-entire-div';
+
+  $entryForm.reset();
+  $image.setAttribute('src', 'images/placeholder-image-square.jpg');
 });
 
 $entry.addEventListener('click', function (event) {
