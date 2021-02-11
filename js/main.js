@@ -29,6 +29,8 @@ $entryForm.addEventListener('submit', function (event) {
 
     $editedEntry.replaceWith(renderEntry(data.editing));
 
+    data.entries.splice(data.entries.length - data.editing.nextEntryId, 1, data.editing);
+
     editTime = false;
     data.editing = null;
 
@@ -94,6 +96,7 @@ function renderEntry(object) {
 window.addEventListener('DOMContentLoaded', function (event) {
   for (var i = 0; i < data.entries.length; i++) {
     $entry.appendChild(renderEntry(data.entries[i]));
+    data.editing = null;
   }
 });
 
@@ -116,6 +119,7 @@ $entriesNavAnchor.addEventListener('click', function (event) {
 
   $entryForm.reset();
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
+  editTime = false;
 });
 
 $entry.addEventListener('click', function (event) {
