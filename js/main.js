@@ -163,9 +163,15 @@ $entry.addEventListener('click', function (event) {
     $deleteAnchor.textContent = 'DELETE ENTRY';
     $entryForm.appendChild($deleteAnchor);
 
+    var $deleteEntryPrompt = document.querySelector('.delete-prompt-container');
+
     $deleteAnchor.addEventListener('click', function (event) {
-      var $deleteEntryPrompt = document.querySelector('.delete-prompt-container');
       $deleteEntryPrompt.className = 'delete-prompt-container';
+    });
+
+    var $cancelDeletionButton = document.querySelector('.cancel-anchor-prompt');
+    $cancelDeletionButton.addEventListener('click', function (event) {
+      $deleteEntryPrompt.className = 'delete-prompt-container hidden';
     });
 
   }
