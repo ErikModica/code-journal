@@ -134,5 +134,7 @@ $entry.addEventListener('click', function (event) {
     $entryForm.elements.title.value = data.editing.title;
     $entryForm.elements.imageUrl.value = data.editing.imageUrl;
     $entryForm.elements.notes.value = data.editing.notes;
+
+    $image.setAttribute('src', data.editing.imageUrl);
   }
 });
