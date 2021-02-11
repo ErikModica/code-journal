@@ -25,11 +25,19 @@ $entryForm.addEventListener('submit', function (event) {
     entryFormInfo.nextEntryId = data.editing.nextEntryId;
     data.editing = entryFormInfo;
 
-    var $editedEntry = document.querySelectorAll('.entry')[data.entries.length - data.editing.nextEntryId];
+    var $editedEntry = (document.querySelectorAll('.entry'));
 
+    var matchingEntryIDNum;
+    var nodeIndex = 0;
+
+    while (data.editing.nextEntryId !== matchingEntryIDNum) {
+      matchingEntryIDNum = parseInt($editedEntry[nodeIndex].getAttribute('data-entry-id'));
+      nodeIndex++;
+    }
+
+    $editedEntry = (document.querySelectorAll('.entry'))[nodeIndex - 1];
     $editedEntry.replaceWith(renderEntry(data.editing));
-
-    data.entries.splice(data.entries.length - data.editing.nextEntryId, 1, data.editing);
+    data.entries.splice(nodeIndex - 1, 1, data.editing);
 
     editTime = false;
     data.editing = null;
@@ -134,9 +142,13 @@ $entry.addEventListener('click', function (event) {
     $entriesEntireDiv.className = '.entries-entire-div hidden';
 
     var closestEntryIDNum = parseInt($closestEntry.getAttribute('data-entry-id'));
-    var closestEntryEntriesIndex = data.entries.length - closestEntryIDNum;
 
-    data.editing = data.entries[closestEntryEntriesIndex];
+    var closestIndex = 0;
+    while (closestEntryIDNum !== data.entries[closestIndex].nextEntryId) {
+      closestIndex++;
+    }
+
+    data.editing = data.entries[closestIndex];
 
     $entryForm.elements.title.value = data.editing.title;
     $entryForm.elements.imageUrl.value = data.editing.imageUrl;
@@ -145,3 +157,21 @@ $entry.addEventListener('click', function (event) {
     $image.setAttribute('src', data.editing.imageUrl);
   }
 });
+
+// function getIDNumIndex(array, numToMatchIndex) {
+
+//   var matchingEntryIDNum;
+//   var nodeIndex = 0;
+
+//   while (numToMatchIndex !== matchingEntryIDNum) {
+//     matchingEntryIDNum = parseInt(array[nodeIndex].getAttribute('data-entry-id'));
+//     nodeIndex++;
+//   }
+
+//   return nodeIndex - 1;
+//   array = (document.querySelectorAll('.entry'))[nodeIndex - 1];
+
+//   array.replaceWith(renderEntry(data.editing));
+//   data.entries.splice(nodeIndex - 1, 1, data.editing);
+
+// }
