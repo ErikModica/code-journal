@@ -23,7 +23,9 @@ $entryForm.addEventListener('submit', function (event) {
   if (editTime) {
 
     entryFormInfo.nextEntryId = data.editing.nextEntryId;
-    data.editing = entryFormInfo;
+    entryFormInfo.title = $entryForm.elements.title.value;
+    entryFormInfo.imageUrl = $entryForm.elements.imageUrl.value;
+    entryFormInfo.notes = $entryForm.elements.notes.value;
 
     var $editedEntry = (document.querySelectorAll('.entry'));
 
@@ -36,8 +38,8 @@ $entryForm.addEventListener('submit', function (event) {
     }
 
     $editedEntry = (document.querySelectorAll('.entry'))[nodeIndex - 1];
-    $editedEntry.replaceWith(renderEntry(data.editing));
-    data.entries.splice(nodeIndex - 1, 1, data.editing);
+    $editedEntry.replaceWith(renderEntry(entryFormInfo));
+    data.entries.splice(nodeIndex - 1, 1, entryFormInfo);
 
     editTime = false;
     data.editing = null;
@@ -157,21 +159,3 @@ $entry.addEventListener('click', function (event) {
     $image.setAttribute('src', data.editing.imageUrl);
   }
 });
-
-// function getIDNumIndex(array, numToMatchIndex) {
-
-//   var matchingEntryIDNum;
-//   var nodeIndex = 0;
-
-//   while (numToMatchIndex !== matchingEntryIDNum) {
-//     matchingEntryIDNum = parseInt(array[nodeIndex].getAttribute('data-entry-id'));
-//     nodeIndex++;
-//   }
-
-//   return nodeIndex - 1;
-//   array = (document.querySelectorAll('.entry'))[nodeIndex - 1];
-
-//   array.replaceWith(renderEntry(data.editing));
-//   data.entries.splice(nodeIndex - 1, 1, data.editing);
-
-// }
