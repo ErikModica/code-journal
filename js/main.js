@@ -157,5 +157,15 @@ $entry.addEventListener('click', function (event) {
     $entryForm.elements.notes.value = data.editing.notes;
 
     $image.setAttribute('src', data.editing.imageUrl);
+
+    // var $deleteAnchor = document.createElement('a');
+    // $deleteAnchor.setAttribute('class', 'delete-anchor');
+    // $deleteAnchor.textContent = 'DELETE ENTRY';
+    // $entryForm.appendChild($deleteAnchor);
+
+    // $deleteAnchor.addEventListener('click', function (event) {
+
+    // })
+
   }
 });
