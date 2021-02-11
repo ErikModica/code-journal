@@ -174,5 +174,17 @@ $entry.addEventListener('click', function (event) {
       $deleteEntryPrompt.className = 'delete-prompt-container hidden';
     });
 
+    var $deleteEntryButton = document.querySelector('.delete-anchor-prompt');
+    $deleteEntryButton.addEventListener('click', function (event) {
+      data.entries.splice(closestIndex, 1);
+      $closestEntry.remove();
+      $deleteEntryPrompt.className = 'delete-prompt-container hidden';
+      $entryFormEntireDiv.className = 'entry-form-entire-div hidden';
+      $entriesEntireDiv.className = 'entries-entire-div';
+      $entryForm.reset();
+      $image.setAttribute('src', 'images/placeholder-image-square.jpg');
+      editTime = false;
+    });
+
   }
 });
