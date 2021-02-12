@@ -1,5 +1,8 @@
 /* global data */
 /* exported data */
+// if (data.entries.length === 1) {
+//   data.nextEntryId = 1
+// }
 
 var editTime = false;
 
@@ -32,7 +35,7 @@ $entryForm.addEventListener('submit', function (event) {
     var matchingEntryIDNum;
     var nodeIndex = 0;
 
-    while (data.editing.nextEntryId !== matchingEntryIDNum) {
+    while (data.editing.nextEntryId !== matchingEntryIDNum && nodeIndex < $editedEntry.length) {
       matchingEntryIDNum = parseInt($editedEntry[nodeIndex].getAttribute('data-entry-id'));
       nodeIndex++;
     }
@@ -146,9 +149,16 @@ $entry.addEventListener('click', function (event) {
     var closestEntryIDNum = parseInt($closestEntry.getAttribute('data-entry-id'));
 
     var closestIndex = 0;
-    while (closestEntryIDNum !== data.entries[closestIndex].nextEntryId) {
+    // console.log('close id: ', closestEntryIDNum)
+    // console.log('next entry id: ', data.entries[closestIndex])
+    // console.log('data: ', data);
+    while (closestEntryIDNum !== data.entries[closestIndex].nextEntryId && closestIndex < data.entries.length) {
       closestIndex++;
     }
+
+    // console.log('close id: ', closestEntryIDNum)
+    // console.log('next entry id: ', data.entries[closestIndex])
+    // console.log('closest Index: ', closestIndex);
 
     data.editing = data.entries[closestIndex];
 
@@ -183,8 +193,8 @@ $entry.addEventListener('click', function (event) {
       $entriesEntireDiv.className = 'entries-entire-div';
       $entryForm.reset();
       $image.setAttribute('src', 'images/placeholder-image-square.jpg');
+      data.editing = null;
       editTime = false;
     });
-
   }
 });
